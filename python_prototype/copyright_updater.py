@@ -124,7 +124,7 @@ class YearParseException(Exception):
     pass
 
 
-def join_years(years):
+def join_years(years_list):
     """
     >>> join_years([2002, 2003])
     '2002-2003'
@@ -140,7 +140,12 @@ def join_years(years):
 
     >>> join_years([2002, 2003, 2004, 2006, 2008, 2009, 2012])
     '2002-2004, 2006, 2008-2009, 2012'
+
+    >>> join_years([2002, 2004, 2003, 2008, 2012, 2009])
+    '2002-2004, 2008-2009, 2012'
     """
+    years = sorted(set(years_list))
+
     comma_groups = []
     year_group = []
     for year in years:

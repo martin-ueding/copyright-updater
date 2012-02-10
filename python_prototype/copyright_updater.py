@@ -60,6 +60,10 @@ def parse_years(year_string):
     comma_groups = re.split(r"\s+,\s+", year_string)
     print comma_groups
 
+    for comma_group in comma_groups:
+        year_group = re.split(r"\s+-\s+", comma_group)
+        print year_group
+
 
 
 

@@ -60,6 +60,8 @@ def process_file(f, linecount, save):
     @param linecount: Up to which line should be processed.
     @type linecount: int
     """
+    print "Processing", f
+
     copyright_years_string, linenumber = find_copyright_years_string(f, linecount)
 
     if copyright_years_string is None:
@@ -86,9 +88,9 @@ def process_file(f, linecount, save):
     with open(f) as orig:
         lines = orig.readlines()
         copyright_line = lines[linenumber]
-        print copyright_line
+        print "Old:", copyright_line.strip()
         new_copyright_line = re.sub(r"\d[0-9-, ]+\d", joined_years, copyright_line, count=1)
-        print new_copyright_line
+        print "New:", new_copyright_line.strip()
         lines[linenumber] = new_copyright_line
 
     if save:

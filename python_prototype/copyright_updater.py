@@ -214,6 +214,7 @@ def join_years(years_list):
 
     return result
 
+
 def flush_group(comma_groups, year_group):
     """
     Move the years in the year_group into the comma_groups.
@@ -255,4 +256,3 @@ if __name__ == "__main__":
         sys.exit(0)
 
     main()
-

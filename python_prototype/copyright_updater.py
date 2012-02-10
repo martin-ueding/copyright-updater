@@ -44,10 +44,10 @@ def main():
     options = _parse_args()
 
     for f in options.files:
-        process_file(f, options.linecount)
+        process_file(f, options.linecount, options.save)
 
 
-def process_file(f, linecount):
+def process_file(f, linecount, save):
     """
     Processes a single file.
 
@@ -77,12 +77,20 @@ def process_file(f, linecount):
 
     joined_years = join_years(years)
 
+    lines = []
+
     with open(f) as orig:
         lines = orig.readlines()
         copyright_line = lines[linenumber]
         print copyright_line
         new_copyright_line = re.sub(r"\d[0-9-, ]+\d", joined_years, copyright_line, count=1)
         print new_copyright_line
+        lines[linenumber] = new_copyright_line
+
+    if save:
+        with open(f, "w") as new:
+            for line in lines:
+                new.write(line)
 
 
 def find_copyright_years_string(f, linecount):
@@ -248,6 +256,8 @@ def _parse_args():
                         help="Number of lines to check from the beginning of the document.")
     parser.add_argument("--test", dest="test", action="store_true",
                         help="Perform doctests.")
+    parser.add_argument("-s", dest="save", action="store_true",
+                        help="Save changed file.")
     #parser.add_argument('--version', action='version', version='<the version>')
 
     return parser.parse_args()

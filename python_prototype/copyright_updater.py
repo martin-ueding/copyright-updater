@@ -3,6 +3,26 @@
 
 # Copyright (c) 2012 Martin Ueding <dev@martin-ueding.de>
 
+"""
+Parses the given files and updates the copyright string.
+
+Say you have a copyright string in the top of some source file, like::
+
+    # Copyright (c) 2010 John Doe <john@example.com>
+
+If you edit this file, you would like the copyright notice so reflect the current year as well, like::
+
+    # Copyright (c) 2010, 2012 John Doe <john@example.com>
+
+This script checks for outdated copyright strings and updates them.
+
+In order to prevent changing of copyright notices that do not carry your name, you can create an INI style configuration file at C{~/.config/copyright_updater.ini} which would look like that::
+
+    [name]
+    name = John Doe
+    email = john@example.com
+"""
+
 import argparse
 import ConfigParser
 import datetime
@@ -11,6 +31,9 @@ import re
 import sys
 
 def main():
+    """
+    Parses command line options and checks all given files.
+    """
     options = _parse_args()
 
     for f in options.files:
@@ -18,6 +41,14 @@ def main():
 
 
 def process_file(f, linecount):
+    """
+    Processes a single file.
+
+    @param f: Filename to process
+    @type f: str
+    @param linecount: Up to which line should be processed.
+    @type linecount: int
+    """
     copyright_years_string, linenumber = find_copyright_years_string(f, linecount)
 
     if copyright_years_string is None:
@@ -48,6 +79,16 @@ def process_file(f, linecount):
 
 
 def find_copyright_years_string(f, linecount):
+    """
+    Find the copyright year string in a file.
+
+    @param f: Filename to process
+    @type f: str
+    @param linecount: Up to which line should be processed.
+    @type linecount: int
+    @return: Year string and line number.
+    @rtype: tuple
+    """
     linenumber = 0
 
     name = ""
@@ -126,6 +167,10 @@ class YearParseException(Exception):
 
 def join_years(years_list):
     """
+    Joins a list of years.
+
+    It detects ranges and collapses them.
+
     >>> join_years([2002, 2003])
     '2002-2003'
 
@@ -143,6 +188,11 @@ def join_years(years_list):
 
     >>> join_years([2002, 2004, 2003, 2008, 2012, 2009])
     '2002-2004, 2008-2009, 2012'
+
+    @param years_list: List with every single year.
+    @type years_list: list
+    @return: Joined string.
+    @rtype: str
     """
     years = sorted(set(years_list))
 
@@ -162,6 +212,14 @@ def join_years(years_list):
     return result
 
 def flush_group(comma_groups, year_group):
+    """
+    Move the years in the year_group into the comma_groups.
+
+    @param comma_groups: List with already collapsed ranges. This will be changed.
+    @type comma_groups: list
+    @param year_group: List with range to be collapsed.
+    @type year_group: list
+    """
     if len(year_group) == 1:
         comma_groups.append(str(year_group[0]))
     elif len(year_group) > 1:

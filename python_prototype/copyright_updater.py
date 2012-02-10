@@ -56,6 +56,11 @@ def parse_years(year_string):
 
     >>> parse_years("2002-2004, 2010")
     [2002, 2003, 2004, 2010]
+
+    @param year_string: String with years.
+    @type year_string: str
+    @return: List with every single year.
+    @rtype: list
     """
     years = []
 

@@ -60,7 +60,6 @@ def process_file(f, linecount, save):
     @param linecount: Up to which line should be processed.
     @type linecount: int
     """
-    print "Processing", f
 
     copyright_years_string, linenumber = find_copyright_years_string(f, linecount)
 
@@ -86,6 +85,7 @@ def process_file(f, linecount, save):
     lines = []
 
     with open(f) as orig:
+        print "in file", f
         lines = orig.readlines()
         copyright_line = lines[linenumber]
         print "Old:", copyright_line.strip()

@@ -79,11 +79,50 @@ def parse_years(year_string):
         else:
             raise YearParseException("Cannot parse %s" % comma_group)
 
-    return years
+    return sorted(years)
 
 
 class YearParseException(Exception):
     pass
+
+
+def join_years(years):
+    """
+    >>> join_years([2002, 2003])
+    '2002-2003'
+
+    >>> join_years([2002, 2003, 2004])
+    '2002-2004'
+
+    >>> join_years([2002, 2004])
+    '2002, 2004'
+
+    >>> join_years([2002, 2003, 2004, 2008, 2009, 2012])
+    '2002-2004, 2008-2009, 2012'
+
+    >>> join_years([2002, 2003, 2004, 2006, 2008, 2009, 2012])
+    '2002-2004, 2006, 2008-2009, 2012'
+    """
+    comma_groups = []
+    year_group = []
+    for year in years:
+        if len(year_group) > 0 and year - year_group[-1] > 1:
+            flush_group(comma_groups, year_group)
+            year_group = []
+
+        year_group.append(year)
+
+    flush_group(comma_groups, year_group)
+
+    result = ', '.join(comma_groups)
+
+    return result
+
+def flush_group(comma_groups, year_group):
+    if len(year_group) == 1:
+        comma_groups.append(str(year_group[0]))
+    elif len(year_group) > 1:
+        comma_groups.append("%d-%d" % (year_group[0], year_group[-1]))
 
 
 def _parse_args():

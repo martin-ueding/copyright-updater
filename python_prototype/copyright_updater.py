@@ -44,6 +44,10 @@ def main():
     options = _parse_args()
 
     for f in options.files:
+        # Ignore nonexistant files.
+        if not os.path.isfile(f):
+            continue
+
         process_file(f, options.linecount, options.save)
 
 

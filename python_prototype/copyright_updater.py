@@ -4,6 +4,7 @@
 # Copyright (c) 2012 Martin Ueding <dev@martin-ueding.de>
 
 import argparse
+import datetime
 import re
 import sys
 
@@ -15,24 +16,40 @@ def main():
 
 
 def process_file(f, linecount):
-    copyright_years_string = find_copyright_years_string(f, linecount)
+    copyright_years_string, linenumber = find_copyright_years_string(f, linecount)
 
     if copyright_years_string is None:
         return
 
     years = parse_years(copyright_years_string)
 
+    if len(years) == 0:
+        return
+
+    # Add the current year.
+    d = datetime.date.today()
+    years.append(d.year)
+
+    joined_years = join_years(years)
+
+    with open(f) as orig:
+        lines = orig.readlines()
+        copyright_line = lines[linenumber]
+        print copyright_line
+        new_copyright_line = re.sub(r"\d[0-9-, ]+\d", joined_years, copyright_line, count=1)
+        print new_copyright_line
+
 
 def find_copyright_years_string(f, linecount):
-    linenumber = 1
+    linenumber = 0
 
-    pattern = re.compile(r".*Copyright\D+([0-9-, ]+)\D+.*")
+    pattern = re.compile(r".*Copyright\D+(\d[0-9-, ]+\d)\D+.*")
 
     with open(f) as infile:
         for line in infile:
             match = pattern.match(line)
             if match is not None:
-                return match.group(1).strip()
+                return match.group(1).strip(), linenumber
 
             linenumber += 1
             if linenumber > linecount:

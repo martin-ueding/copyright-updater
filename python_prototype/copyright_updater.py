@@ -10,13 +10,16 @@ Say you have a copyright string in the top of some source file, like::
 
     # Copyright (c) 2010 John Doe <john@example.com>
 
-If you edit this file, you would like the copyright notice so reflect the current year as well, like::
+If you edit this file, you would like the copyright notice so reflect the
+current year as well, like::
 
     # Copyright (c) 2010, 2012 John Doe <john@example.com>
 
 This script checks for outdated copyright strings and updates them.
 
-In order to prevent changing of copyright notices that do not carry your name, you can create an INI style configuration file at C{~/.config/copyright_updater.ini} which would look like that::
+In order to prevent changing of copyright notices that do not carry your name,
+you can create an INI style configuration file at
+C{~/.config/copyright_updater.ini} which would look like that::
 
     [name]
     name = John Doe

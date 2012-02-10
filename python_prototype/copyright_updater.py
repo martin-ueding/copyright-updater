@@ -30,6 +30,11 @@ def process_file(f, linecount):
 
     # Add the current year.
     d = datetime.date.today()
+
+    # If the current year is already in the list, do nothing.
+    if d.year in years:
+        return
+
     years.append(d.year)
 
     joined_years = join_years(years)

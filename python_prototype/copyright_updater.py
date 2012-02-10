@@ -57,14 +57,28 @@ def parse_years(year_string):
     >>> parse_years("2002-2004, 2010")
     [2002, 2003, 2004, 2010]
     """
-    comma_groups = re.split(r"\s+,\s+", year_string)
-    print comma_groups
+    years = []
+
+    comma_groups = re.split(r"\s*,\s*", year_string)
 
     for comma_group in comma_groups:
-        year_group = re.split(r"\s+-\s+", comma_group)
-        print year_group
+        year_group = re.split(r"\s*-\s*", comma_group)
+        year_group = map(int, year_group)
+
+        if len(year_group) == 1:
+            years += year_group
+
+        elif len(year_group) == 2:
+            years += range(year_group[0], year_group[1]+1)
+
+        else:
+            raise YearParseException("Cannot parse %s" % comma_group)
+
+    return years
 
 
+class YearParseException(Exception):
+    pass
 
 
 def _parse_args():

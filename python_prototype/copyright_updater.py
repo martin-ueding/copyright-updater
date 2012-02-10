@@ -4,7 +4,9 @@
 # Copyright (c) 2012 Martin Ueding <dev@martin-ueding.de>
 
 import argparse
+import ConfigParser
 import datetime
+import os.path
 import re
 import sys
 
@@ -43,7 +45,21 @@ def process_file(f, linecount):
 def find_copyright_years_string(f, linecount):
     linenumber = 0
 
-    pattern = re.compile(r".*Copyright\D+(\d[0-9-, ]+\d)\D+.*")
+    name = ""
+    email = ""
+
+    configfile = os.path.expanduser("~/.config/copyright_updater.ini")
+    if os.path.isfile(configfile):
+        parser = ConfigParser.ConfigParser()
+        parser.read(configfile)
+
+        if parser.has_option("name", "name"):
+            name = parser.get("name", "name")
+        if parser.has_option("name", "email"):
+            email = "<%s>" % parser.get("name", "email")
+
+
+    pattern = re.compile(r".*Copyright\D+(\d[0-9-, ]+\d)\D+.*"+name+".*"+email+".*")
 
     with open(f) as infile:
         for line in infile:
@@ -55,7 +71,7 @@ def find_copyright_years_string(f, linecount):
             if linenumber > linecount:
                 break
 
-    return None
+    return None, -1
 
 
 def parse_years(year_string):

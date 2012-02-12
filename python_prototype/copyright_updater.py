@@ -145,15 +145,6 @@ def parse_years(year_string):
     """
     Parses the year or years out of a string with years.
 
-    >>> parse_years("2002")
-    [2002]
-
-    >>> parse_years("2002-2004")
-    [2002, 2003, 2004]
-
-    >>> parse_years("2002, 2004")
-    [2002, 2004]
-
     >>> parse_years("2002-2004, 2010")
     [2002, 2003, 2004, 2010]
 
@@ -192,23 +183,8 @@ def join_years(years_list):
 
     It detects ranges and collapses them.
 
-    >>> join_years([2002, 2003])
-    '2002-2003'
-
-    >>> join_years([2002, 2003, 2004])
-    '2002-2004'
-
-    >>> join_years([2002, 2004])
-    '2002, 2004'
-
-    >>> join_years([2002, 2003, 2004, 2008, 2009, 2012])
-    '2002-2004, 2008-2009, 2012'
-
     >>> join_years([2002, 2003, 2004, 2006, 2008, 2009, 2012])
     '2002-2004, 2006, 2008-2009, 2012'
-
-    >>> join_years([2002, 2004, 2003, 2008, 2012, 2009])
-    '2002-2004, 2008-2009, 2012'
 
     @param years_list: List with every single year.
     @type years_list: list

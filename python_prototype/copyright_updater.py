@@ -174,7 +174,9 @@ def parse_years(year_string):
 
 
 class YearParseException(Exception):
-    pass
+    """
+    Exception if a year string cannot be parsed.
+    """
 
 
 def join_years(years_list):

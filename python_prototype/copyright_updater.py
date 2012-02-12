@@ -270,9 +270,4 @@ def _parse_args():
 
 
 if __name__ == "__main__":
-    if "--test" in sys.argv:
-        import doctest
-        doctest.testmod()
-        sys.exit(0)
-
     main()

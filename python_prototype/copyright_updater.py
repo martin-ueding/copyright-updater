@@ -61,6 +61,8 @@ def process_file(f, linecount, save):
     @type linecount: int
     """
 
+    # TODO Read the file once and pass the lines to the functions.
+
     copyright_years_string, linenumber = find_copyright_years_string(f, linecount)
 
     if copyright_years_string is None:

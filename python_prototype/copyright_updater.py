@@ -61,9 +61,11 @@ def process_file(f, linecount, save):
     @type linecount: int
     """
 
-    # TODO Read the file once and pass the lines to the functions.
+    lines = []
+    with open(f) as orig:
+        lines = orig.readlines()
 
-    copyright_years_string, linenumber = find_copyright_years_string(f, linecount)
+    copyright_years_string, linenumber = find_copyright_years_string(lines, linecount)
 
     if copyright_years_string is None:
         return
@@ -84,16 +86,12 @@ def process_file(f, linecount, save):
 
     joined_years = join_years(years)
 
-    lines = []
-
-    with open(f) as orig:
-        print "in file", f
-        lines = orig.readlines()
-        copyright_line = lines[linenumber]
-        print "Old:", copyright_line.strip()
-        new_copyright_line = re.sub(r"\d[0-9-, ]+\d", joined_years, copyright_line, count=1)
-        print "New:", new_copyright_line.strip()
-        lines[linenumber] = new_copyright_line
+    print "in file", f
+    copyright_line = lines[linenumber]
+    print "Old:", copyright_line.strip()
+    new_copyright_line = re.sub(r"\d[0-9-, ]+\d", joined_years, copyright_line, count=1)
+    print "New:", new_copyright_line.strip()
+    lines[linenumber] = new_copyright_line
 
     if save:
         with open(f, "w") as new:
@@ -101,12 +99,12 @@ def process_file(f, linecount, save):
                 new.write(line)
 
 
-def find_copyright_years_string(f, linecount):
+def find_copyright_years_string(lines, linecount):
     """
     Find the copyright year string in a file.
 
-    @param f: Filename to process
-    @type f: str
+    @param f: Lines to process.
+    @type f: list
     @param linecount: Up to which line should be processed.
     @type linecount: int
     @return: Year string and line number.
@@ -130,15 +128,14 @@ def find_copyright_years_string(f, linecount):
 
     pattern = re.compile(r".*Copyright\D+(\d[0-9-, ]+\d)\D+.*"+name+".*"+email+".*")
 
-    with open(f) as infile:
-        for line in infile:
-            match = pattern.match(line)
-            if match is not None:
-                return match.group(1).strip(), linenumber
+    for line in lines:
+        match = pattern.match(line)
+        if match is not None:
+            return match.group(1).strip(), linenumber
 
-            linenumber += 1
-            if linenumber > linecount:
-                break
+        linenumber += 1
+        if linenumber > linecount:
+            break
 
     return None, -1
 

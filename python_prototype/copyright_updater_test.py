@@ -8,9 +8,6 @@ import unittest
 import copyright_updater
 
 class CopyrightUpdaterTest(unittest.TestCase):
-    def test_true(self):
-        assert True, "Control positive."
-
     def test_join_years(self):
         assert copyright_updater.join_years([2002, 2003]) == '2002-2003'
         assert copyright_updater.join_years([2002, 2003, 2004]) == '2002-2004'

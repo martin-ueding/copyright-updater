@@ -94,6 +94,14 @@ def process_file(f, linecount):
 
 def process_lines(lines, linecount, config_regex=""):
     """
+    Process the given lines up to linecount.
+
+    @param lines: List of lines. This will be changed.
+    @type lines: list
+    @param linecount: Up to which line should be searched.
+    @type linecount: int
+    @param config_regex: Additional RegEx to match for.
+    @type config_regex: str
     """
     copyright_years_string, linenumber = find_copyright_years_string(lines, linecount, config_regex)
 
@@ -149,6 +157,13 @@ def find_copyright_years_string(lines, linecount, config_regex=""):
 
 
 def load_config_regex():
+    """
+    Loads the regex that matches the name and email stored in the settings
+    file.
+
+    @return RegEx.
+    @rtype: str
+    """
     configfile = os.path.expanduser("~/.config/copyright_updater.ini")
     if os.path.isfile(configfile):
         parser = ConfigParser.ConfigParser()
@@ -165,6 +180,19 @@ def load_config_regex():
 
 
 def build_regex(name, email):
+    """
+    Build a regex that matches a name and email combination.
+
+    >>> build_regex("John Doe", "john@example.com")
+    'John Doe.*john@example.com.*'
+
+    @param name: Name of the person.
+    @type name: str
+    @param email: Email of the person.
+    @type email: str
+    @return: RegEx.
+    @rtype: str
+    """
     return name+".*"+email+".*"
 
 

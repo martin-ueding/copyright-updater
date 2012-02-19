@@ -19,7 +19,13 @@ This script checks for outdated copyright strings and updates them.
 
 Ranges are detected and collapsed intelligently. If you have C{2008, 2009,
 2010}, it will become C{2008-2010}. If you mix ranges and single years, this
-will also be picked up correctly.
+will also be picked up correctly::
+
+    2002, 2003, 2004, 2006, 2008, 2009, 2012
+
+That list becomes::
+
+    2002-2004, 2006, 2008-2009, 2012
 
 In order to prevent changing of copyright notices that do not carry your name,
 you can create an INI style configuration file at

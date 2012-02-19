@@ -1,6 +1,6 @@
 # Copyright © 2012 Martin Ueding <dev@martin-ueding.de>
 
-pythonfiles := $(wildcard *.py)
+pythonfiles := $(wildcard copyright*.py)
 testfiles := $(wildcard *_test.py)
 
 test:

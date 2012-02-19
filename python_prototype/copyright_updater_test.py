@@ -26,11 +26,11 @@ class CopyrightUpdaterTest(unittest.TestCase):
         lines = [
             "#!/usr/bin/python",
             "# -*- coding: utf-8 -*-",
-            "# Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>",
+            "# Copyright (c) 2011 John Doe <john@example.com>",
         ]
 
         years, line_number = copyright_updater.find_copyright_years_string(
-            lines, 5
+            lines, 5, False
         )
 
         assert years == "2011"
@@ -41,11 +41,11 @@ class CopyrightUpdaterTest(unittest.TestCase):
             "#!/usr/bin/python",
             "# -*- coding: utf-8 -*-",
             "",
-            "# Copyright (c) 2007-2009, 2011-2012 Martin Ueding <dev@martin-ueding.de>",
+            "# Copyright (c) 2007-2009, 2011-2012 John Doe <john@example.com>",
         ]
 
         years, line_number = copyright_updater.find_copyright_years_string(
-            lines, 5
+            lines, 5, False
         )
 
         assert years == "2007-2009, 2011-2012"

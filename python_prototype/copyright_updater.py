@@ -99,7 +99,7 @@ def process_file(f, linecount, save):
                 new.write(line)
 
 
-def find_copyright_years_string(lines, linecount):
+def find_copyright_years_string(lines, linecount, use_config=True):
     """
     Find the copyright year string in a file.
 
@@ -115,15 +115,16 @@ def find_copyright_years_string(lines, linecount):
     name = ""
     email = ""
 
-    configfile = os.path.expanduser("~/.config/copyright_updater.ini")
-    if os.path.isfile(configfile):
-        parser = ConfigParser.ConfigParser()
-        parser.read(configfile)
+    if use_config:
+        configfile = os.path.expanduser("~/.config/copyright_updater.ini")
+        if os.path.isfile(configfile):
+            parser = ConfigParser.ConfigParser()
+            parser.read(configfile)
 
-        if parser.has_option("name", "name"):
-            name = parser.get("name", "name")
-        if parser.has_option("name", "email"):
-            email = "<%s>" % parser.get("name", "email")
+            if parser.has_option("name", "name"):
+                name = parser.get("name", "name")
+            if parser.has_option("name", "email"):
+                email = "<%s>" % parser.get("name", "email")
 
 
     pattern = re.compile(r".*Copyright\D+(\d[0-9-, ]+\d)\D+.*"+name+".*"+email+".*")

@@ -134,22 +134,7 @@ def find_copyright_years_string(lines, linecount, use_config=True):
     """
     linenumber = 0
 
-    name = ""
-    email = ""
-
-    if use_config:
-        configfile = os.path.expanduser("~/.config/copyright_updater.ini")
-        if os.path.isfile(configfile):
-            parser = ConfigParser.ConfigParser()
-            parser.read(configfile)
-
-            if parser.has_option("name", "name"):
-                name = parser.get("name", "name")
-            if parser.has_option("name", "email"):
-                email = "<%s>" % parser.get("name", "email")
-
-
-    pattern = re.compile(r".*Copyright\D+(\d[0-9-, ]+\d)\D+.*"+name+".*"+email+".*")
+    pattern = re.compile(r".*Copyright\D+(\d[0-9-, ]+\d)\D+.*")
 
     for line in lines:
         match = pattern.match(line)
@@ -161,6 +146,20 @@ def find_copyright_years_string(lines, linecount, use_config=True):
             break
 
     return None, -1
+
+
+def load_config_regex():
+    configfile = os.path.expanduser("~/.config/copyright_updater.ini")
+    if os.path.isfile(configfile):
+        parser = ConfigParser.ConfigParser()
+        parser.read(configfile)
+
+            if parser.has_option("name", "name"):
+                name = parser.get("name", "name")
+                if parser.has_option("name", "email"):
+                    email = "<%s>" % parser.get("name", "email")
+
+    return name+".*"+email+".*"
 
 
 def parse_years(year_string):

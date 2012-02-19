@@ -240,7 +240,7 @@ def _parse_args():
     @rtype: Namespace
     """
     parser = argparse.ArgumentParser(usage="%(prog)s [options] file ...", description="Updates the copyright dates in source code.")
-    parser.add_argument('files', metavar='file', type=str, nargs='+',
+    parser.add_argument('files', metavar='file', type=str, nargs='*',
                    help='Files to check.')
     parser.add_argument("-n", dest="linecount", type=int, default=5,
                         help="Number of lines to check from the beginning of the document.")

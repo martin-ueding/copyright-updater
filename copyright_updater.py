@@ -85,17 +85,17 @@ def process_file(f, linecount):
     with open(f) as orig:
         lines = orig.readlines()
 
-    process_lines(lines, linecount)
+    process_lines(lines, linecount, load_config_regex())
 
     with open(f, "w") as new:
         for line in lines:
             new.write(line)
 
 
-def process_lines(lines, linecount, use_config=True):
+def process_lines(lines, linecount, config_regex=""):
     """
     """
-    copyright_years_string, linenumber = find_copyright_years_string(lines, linecount, use_config)
+    copyright_years_string, linenumber = find_copyright_years_string(lines, linecount, config_regex)
 
     if copyright_years_string is None:
         return

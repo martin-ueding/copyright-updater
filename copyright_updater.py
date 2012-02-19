@@ -121,7 +121,7 @@ def process_lines(lines, linecount, use_config=True):
     lines[linenumber] = new_copyright_line
 
 
-def find_copyright_years_string(lines, linecount, use_config=True):
+def find_copyright_years_string(lines, linecount, config_regex=""):
     """
     Find the copyright year string in a file.
 
@@ -134,7 +134,7 @@ def find_copyright_years_string(lines, linecount, use_config=True):
     """
     linenumber = 0
 
-    pattern = re.compile(r".*Copyright\D+(\d[0-9-, ]+\d)\D+.*")
+    pattern = re.compile(r".*Copyright\D+(\d[0-9-, ]+\d)\D+.*"+config_regex)
 
     for line in lines:
         match = pattern.match(line)

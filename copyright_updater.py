@@ -49,12 +49,24 @@ def main():
     """
     options = _parse_args()
 
-    for f in options.files:
-        # Ignore nonexistant files.
-        if not os.path.isfile(f):
-            continue
+    if len(options.files) > 0:
+        for f in options.files:
+            # Ignore nonexistant files.
+            if not os.path.isfile(f):
+                continue
 
-        process_file(f, options.linecount, options.save)
+            process_file(f, options.linecount, options.save)
+
+    else:
+        lines = sys.stdin.readlines()
+
+        if len(lines) > 0:
+            process_lines(lines, len(lines))
+
+            for line in lines:
+                sys.stdout.write(line)
+
+
 
 
 def process_file(f, linecount, save):
@@ -65,13 +77,26 @@ def process_file(f, linecount, save):
     @type f: str
     @param linecount: Up to which line should be processed.
     @type linecount: int
+    @param save: Whether to alter the given lines.
+    @type save: bool
     """
 
     lines = []
     with open(f) as orig:
         lines = orig.readlines()
 
-    copyright_years_string, linenumber = find_copyright_years_string(lines, linecount)
+    process_lines(lines, linecount)
+
+    if save:
+        with open(f, "w") as new:
+            for line in lines:
+                new.write(line)
+
+
+def process_lines(lines, linecount, use_config=True):
+    """
+    """
+    copyright_years_string, linenumber = find_copyright_years_string(lines, linecount, use_config)
 
     if copyright_years_string is None:
         return
@@ -92,17 +117,9 @@ def process_file(f, linecount, save):
 
     joined_years = join_years(years)
 
-    print "in file", f
     copyright_line = lines[linenumber]
-    print "Old:", copyright_line.strip()
     new_copyright_line = re.sub(r"\d[0-9-, ]+\d", joined_years, copyright_line, count=1)
-    print "New:", new_copyright_line.strip()
     lines[linenumber] = new_copyright_line
-
-    if save:
-        with open(f, "w") as new:
-            for line in lines:
-                new.write(line)
 
 
 def find_copyright_years_string(lines, linecount, use_config=True):

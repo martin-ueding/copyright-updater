@@ -50,3 +50,21 @@ class CopyrightUpdaterTest(unittest.TestCase):
 
         assert years == "2007-2009, 2011-2012"
         assert line_number == 3
+
+
+    def test_process_lines(self):
+        lines = [
+            "#!/usr/bin/python",
+            "# -*- coding: utf-8 -*-",
+            "",
+            "# Copyright (c) 2007-2009, 2011 John Doe <john@example.com>",
+        ]
+
+        copyright_updater.process_lines(lines, 10, False)
+
+        assert lines == [
+            "#!/usr/bin/python",
+            "# -*- coding: utf-8 -*-",
+            "",
+            "# Copyright (c) 2007-2009, 2011-2012 John Doe <john@example.com>",
+        ]

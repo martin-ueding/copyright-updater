@@ -154,10 +154,10 @@ def load_config_regex():
         parser = ConfigParser.ConfigParser()
         parser.read(configfile)
 
-            if parser.has_option("name", "name"):
-                name = parser.get("name", "name")
-                if parser.has_option("name", "email"):
-                    email = "<%s>" % parser.get("name", "email")
+        if parser.has_option("name", "name"):
+            name = parser.get("name", "name")
+            if parser.has_option("name", "email"):
+                email = "<%s>" % parser.get("name", "email")
 
     return name+".*"+email+".*"
 

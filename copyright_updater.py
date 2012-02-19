@@ -159,9 +159,13 @@ def load_config_regex():
             if parser.has_option("name", "email"):
                 email = "<%s>" % parser.get("name", "email")
 
-                return name+".*"+email+".*"
+                return build_regex(name, email)
 
     return ""
+
+
+def build_regex(name, email):
+    return name+".*"+email+".*"
 
 
 def parse_years(year_string):

@@ -21,3 +21,32 @@ class CopyrightUpdaterTest(unittest.TestCase):
         assert copyright_updater.parse_years("2002-2004") == [2002, 2003, 2004]
         assert copyright_updater.parse_years("2002, 2004") == [2002, 2004]
         assert copyright_updater.parse_years("2002-2004, 2010") == [2002, 2003, 2004, 2010]
+
+    def test_find_copyright_years_string_1(self):
+        lines = [
+            "#!/usr/bin/python",
+            "# -*- coding: utf-8 -*-",
+            "# Copyright (c) 2011 Martin Ueding <dev@martin-ueding.de>",
+        ]
+
+        years, line_number = copyright_updater.find_copyright_years_string(
+            lines, 5
+        )
+
+        assert years == "2011"
+        assert line_number == 2
+            
+    def test_find_copyright_years_string_2(self):
+        lines = [
+            "#!/usr/bin/python",
+            "# -*- coding: utf-8 -*-",
+            "",
+            "# Copyright (c) 2007-2009, 2011-2012 Martin Ueding <dev@martin-ueding.de>",
+        ]
+
+        years, line_number = copyright_updater.find_copyright_years_string(
+            lines, 5
+        )
+
+        assert years == "2007-2009, 2011-2012"
+        assert line_number == 3

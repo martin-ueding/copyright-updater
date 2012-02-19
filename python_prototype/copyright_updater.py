@@ -103,8 +103,8 @@ def find_copyright_years_string(lines, linecount):
     """
     Find the copyright year string in a file.
 
-    @param f: Lines to process.
-    @type f: list
+    @param lines: Lines to process.
+    @type lines: list
     @param linecount: Up to which line should be processed.
     @type linecount: int
     @return: Year string and line number.
@@ -198,19 +198,19 @@ def join_years(years_list):
     year_group = []
     for year in years:
         if len(year_group) > 0 and year - year_group[-1] > 1:
-            flush_group(comma_groups, year_group)
+            _flush_group(comma_groups, year_group)
             year_group = []
 
         year_group.append(year)
 
-    flush_group(comma_groups, year_group)
+    _flush_group(comma_groups, year_group)
 
     result = ', '.join(comma_groups)
 
     return result
 
 
-def flush_group(comma_groups, year_group):
+def _flush_group(comma_groups, year_group):
     """
     Move the years in the year_group into the comma_groups.
 

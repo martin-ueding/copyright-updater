@@ -6,3 +6,6 @@ testfiles := $(wildcard *_test.py)
 test:
 	python -m doctest $(pythonfiles)
 	python -m unittest $(testfiles:.py=)
+
+doc:
+	epydoc -v $(pythonfiles)

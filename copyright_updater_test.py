@@ -30,7 +30,7 @@ class CopyrightUpdaterTest(unittest.TestCase):
         ]
 
         years, line_number = copyright_updater.find_copyright_years_string(
-            lines, 5, False
+            lines, 5
         )
 
         assert years == "2011"
@@ -45,7 +45,7 @@ class CopyrightUpdaterTest(unittest.TestCase):
         ]
 
         years, line_number = copyright_updater.find_copyright_years_string(
-            lines, 5, False
+            lines, 5
         )
 
         assert years == "2007-2009, 2011-2012"
@@ -60,7 +60,7 @@ class CopyrightUpdaterTest(unittest.TestCase):
             "# Copyright (c) 2007-2009, 2011 John Doe <john@example.com>",
         ]
 
-        copyright_updater.process_lines(lines, 10, False)
+        copyright_updater.process_lines(lines, 10)
 
         assert lines == [
             "#!/usr/bin/python",

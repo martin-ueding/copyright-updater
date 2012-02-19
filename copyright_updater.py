@@ -55,7 +55,7 @@ def main():
             if not os.path.isfile(f):
                 continue
 
-            process_file(f, options.linecount, options.save)
+            process_file(f, options.linecount)
 
     else:
         lines = sys.stdin.readlines()
@@ -69,7 +69,7 @@ def main():
 
 
 
-def process_file(f, linecount, save):
+def process_file(f, linecount):
     """
     Processes a single file.
 
@@ -77,8 +77,6 @@ def process_file(f, linecount, save):
     @type f: str
     @param linecount: Up to which line should be processed.
     @type linecount: int
-    @param save: Whether to alter the given lines.
-    @type save: bool
     """
 
     lines = []
@@ -87,10 +85,9 @@ def process_file(f, linecount, save):
 
     process_lines(lines, linecount)
 
-    if save:
-        with open(f, "w") as new:
-            for line in lines:
-                new.write(line)
+    with open(f, "w") as new:
+        for line in lines:
+            new.write(line)
 
 
 def process_lines(lines, linecount, use_config=True):
@@ -263,8 +260,6 @@ def _parse_args():
                         help="Number of lines to check from the beginning of the document.")
     parser.add_argument("--test", dest="test", action="store_true",
                         help="Perform doctests.")
-    parser.add_argument("-s", dest="save", action="store_true",
-                        help="Save changed file.")
     #parser.add_argument('--version', action='version', version='<the version>')
 
     return parser.parse_args()

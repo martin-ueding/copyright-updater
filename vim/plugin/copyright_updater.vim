@@ -54,3 +54,35 @@ function! ParseYears(yearString)
 
 	return years
 endfunction
+
+" Joins a list of years. It detects ranges and collapses them.
+function! JoinYears(yearsList)
+	let years = sort(a:yearList)
+
+	let commaGroups = []
+	let yearGroups = []
+
+	for year in years
+		if len(yearGroup) > 0 && year - year_group[-1] > 0
+			let [commaGroups, yearGroups] = FlushYearGroup(commaGroups, yearGroups)
+			let yearGroup = []
+		endif
+
+		let yearGroup += [year]
+	endfor
+
+	let [commaGroups, yearGroups] = FlushYearGroup(commaGroups, yearGroups)
+
+	let result = join(commaGroups, ', ')
+
+	return result
+endfunction
+
+function! FlushGroup(commaGroups, yearGroup)
+	if len(a:yearGroup) == 1
+		a:commaGroups += a:yearGroup
+	elseif len(a:yearGroup) > 1
+		a:commaGroup += [a:yearGroup[0].'-'.a:yearGroup[-1]]
+
+	return [a:commaGroups, a:yearGroup]
+endfunction

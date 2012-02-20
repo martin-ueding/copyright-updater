@@ -1,7 +1,7 @@
 " Copyright © 2012 Martin Ueding <dev@martin-ueding.de>
 
 " Copyright updater
-"au BufWritePre * call Copyright_updater()
+au BufWritePre * call Copyright_updater()
 
 " Import thy Python module into this namespace.
 let s:basename = fnamemodify(expand('<sfile>'), ':h')

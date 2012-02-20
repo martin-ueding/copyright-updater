@@ -10,9 +10,9 @@ execute 'pyfile '.s:basename
 
 " This is called before writing
 function! Copyright_updater()
-	call CurPos("save")
-
-	python update_copyright()
-
-	call CurPos("restore")
+	if &modified
+		call CurPos("save")
+		python update_copyright()
+		call CurPos("restore")
+	endif
 endfunction

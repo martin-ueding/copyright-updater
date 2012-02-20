@@ -37,15 +37,14 @@ endfunction
 function! ParseYears(yearString)
 	let years = []
 
-	let commaGroups = split(a:yearString, "\v\s*,\s*")
-	echom "commaGroups ".join(commaGroups, "#")
+	let commaGroups = split(a:yearString, '\v\s*,\s*')
 
 	for commaGroup in commaGroups
-		let yearGroup = split(commaGroup, "\v\s*-\s*")
-		echom "yearGroup ".join(yearGroup, "#")
+		let yearGroup = split(commaGroup, '\v\s*-\s*')
 
 		if len(yearGroup) == 1
-			let years += yearGroup
+			" Force conversion to number
+			let years += [yearGroup[0] + 0]
 		elseif len(yearGroup) == 2
 			let years += range(yearGroup[0], yearGroup[-1])
 		else

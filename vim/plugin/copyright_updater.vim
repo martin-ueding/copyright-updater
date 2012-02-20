@@ -1,7 +1,7 @@
 " Copyright © 2012 Martin Ueding <dev@martin-ueding.de>
 
 " Copyright updater
-au BufWritePre * call Copyright_updater()
+"au BufWritePre * call Copyright_updater()
 
 function! Copyright_updater()
 	call CurPos("save")
@@ -31,4 +31,27 @@ function! Copyright_updater()
 	endif
 
 	call CurPos("restore")
+endfunction
+
+" Parse the year or years out of a string with years.
+function! ParseYears(yearString)
+	let years = []
+
+	let commaGroups = split(a:yearString, "\v\s*,\s*")
+	echom "commaGroups ".join(commaGroups, "#")
+
+	for commaGroup in commaGroups
+		let yearGroup = split(commaGroup, "\v\s*-\s*")
+		echom "yearGroup ".join(yearGroup, "#")
+
+		if len(yearGroup) == 1
+			let years += yearGroup
+		elseif len(yearGroup) == 2
+			let years += range(yearGroup[0], yearGroup[-1])
+		else
+			echom "Cannot parse ".commaGroup
+		endif
+	endfor
+
+	return years
 endfunction

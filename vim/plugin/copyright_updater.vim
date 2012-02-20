@@ -16,6 +16,7 @@ function! Copyright_updater()
 	for i in range(1, lineno)
 		if match(getline(i), strftime('%Y')) >= 0
 			let hasYear = 1
+			break
 		endif
 		if match(getline(i), 'Copyright') >= 0
 			let hasCopyright = 1

@@ -18,4 +18,3 @@ function! Copyright_updater()
 
 	call CurPos("restore")
 endfunction
-

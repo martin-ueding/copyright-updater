@@ -46,7 +46,7 @@ import re
 import sys
 import vim
 
-def main():
+def update_copyright():
     process_lines(vim.current.buffer, 5, load_config_regex())
 
 def process_lines(lines, linecount, config_regex=""):

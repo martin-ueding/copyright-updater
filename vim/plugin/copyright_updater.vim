@@ -14,7 +14,7 @@ execute 'pyfile '.s:basename
 function! Copyright_updater()
 	call CurPos("save")
 
-	python main()
+	python update_copyright()
 
 	call CurPos("restore")
 endfunction

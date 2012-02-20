@@ -47,13 +47,7 @@ import sys
 import vim
 
 def main():
-    for line in vim.current.buffer:
-        print line
-
-    # process_lines(vim.current.buffer, 5, load_config_regex())
-
-
-    print "Hello"
+    process_lines(vim.current.buffer, 5, load_config_regex())
 
 def process_lines(lines, linecount, config_regex=""):
     """

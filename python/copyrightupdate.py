@@ -44,6 +44,27 @@ import os.path
 import re
 import sys
 
+def process_file(f, linecount):
+    """
+    Processes a single file.
+
+    @param f: Filename to process
+    @type f: str
+    @param linecount: Up to which line should be processed.
+    @type linecount: int
+    """
+
+    lines = []
+    with open(f) as orig:
+        lines = orig.readlines()
+
+    process_lines(lines, linecount, load_config_regex())
+
+    with open(f, "w") as new:
+        for line in lines:
+            new.write(line)
+
+
 def process_lines(lines, linecount, config_regex=""):
     """
     Process the given lines up to linecount.

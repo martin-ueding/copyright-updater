@@ -131,7 +131,7 @@ def load_config_regex():
     Loads the regex that matches the name and email stored in the settings
     file.
 
-    @return RegEx.
+    @return: RegEx.
     @rtype: str
     """
     configfile = os.path.expanduser("~/.config/copyright_updater.ini")

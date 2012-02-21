@@ -42,7 +42,6 @@ import ConfigParser
 import datetime
 import os.path
 import re
-import sys
 
 def process_file(f, linecount):
     """

@@ -4,6 +4,7 @@
 # Copyright (c) 2012 Martin Ueding <dev@martin-ueding.de>
 
 import argparse
+import sys
 
 import copyrightupdate
 

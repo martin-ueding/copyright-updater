@@ -4,7 +4,7 @@
 # Copyright © 2012 Martin Ueding <dev@martin-ueding.de>
 
 """
-Parses the given files and updates the copyright string.
+Parses the given lines and updates the copyright string.
 
 Say you have a copyright string in the top of some source file, like::
 
@@ -39,15 +39,10 @@ If no input files are given, the program acts as a filter from STDIN to STDOUT.
 """
 
 import ConfigParser
-import argparse
 import datetime
 import os.path
 import re
 import sys
-import vim
-
-def update_copyright():
-    process_lines(vim.current.buffer, 5, load_config_regex())
 
 def process_lines(lines, linecount, config_regex=""):
     """

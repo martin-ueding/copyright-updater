@@ -5,7 +5,7 @@
 
 import unittest
 
-import copyright_updater
+import copyrightupdate
 
 class CopyrightUpdaterTest(unittest.TestCase):
     def test_join_years(self):

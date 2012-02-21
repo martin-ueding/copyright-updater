@@ -16,7 +16,7 @@ import sys
 
 import copyrightupdate
 
-def main()
+def main():
     """
     Parses command line options and checks all given files.
     """

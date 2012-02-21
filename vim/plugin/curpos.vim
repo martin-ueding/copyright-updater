@@ -1,4 +1,5 @@
 " http://vim.wikia.com/wiki/Maintain_cursor_and_screen_position
+
 function CurPos(action)
   if a:action == "save"
     let b:saveve = &virtualedit

@@ -3,6 +3,14 @@
 
 # Copyright (c) 2012 Martin Ueding <dev@martin-ueding.de>
 
+"""
+CLI client for the copyrightupdate module.
+
+Parses the given files and updates the copyright string.
+
+If no input files are given, the program acts as a filter from STDIN to STDOUT.
+"""
+
 import argparse
 import sys
 

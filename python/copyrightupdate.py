@@ -34,8 +34,6 @@ C{~/.config/copyright_updater.ini} which would look like that::
     [name]
     name = John Doe
     email = john@example.com
-
-If no input files are given, the program acts as a filter from STDIN to STDOUT.
 """
 
 import ConfigParser

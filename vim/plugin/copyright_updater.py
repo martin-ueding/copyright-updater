@@ -12,4 +12,4 @@ import vim
 import copyrightupdate
 
 def update_copyright():
-    copyrightupdate.process_lines(vim.current.buffer, 5, load_config_regex())
+    copyrightupdate.process_lines(vim.current.buffer, 5, copyrightupdate.load_config_regex())

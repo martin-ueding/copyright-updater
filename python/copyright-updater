@@ -3,7 +3,33 @@
 
 # Copyright (c) 2012 Martin Ueding <dev@martin-ueding.de>
 
+import argparse
+
+import copyrightupdate
+
 def main()
+    """
+    Parses command line options and checks all given files.
+    """
+    options = _parse_args()
+
+    if len(options.files) > 0:
+        for f in options.files:
+            # Ignore nonexistant files.
+            if not os.path.isfile(f):
+                continue
+
+            copyrightupdate.process_file(f, options.linecount)
+
+    else:
+        lines = sys.stdin.readlines()
+
+        if len(lines) > 0:
+            copyrightupdate.process_lines(lines, len(lines))
+
+            for line in lines:
+                sys.stdout.write(line)
+
 
 def _parse_args():
     """

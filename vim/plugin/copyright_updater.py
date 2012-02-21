@@ -3,6 +3,10 @@
 
 # Copyright © 2012 Martin Ueding <dev@martin-ueding.de>
 
+"""
+Vim client to copyrightupdate.
+"""
+
 import vim
 
 import copyrightupdate

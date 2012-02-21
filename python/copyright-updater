@@ -51,7 +51,7 @@ def _parse_args():
     parser.add_argument('files', metavar='file', type=str, nargs='*',
                    help='Files to check.')
     parser.add_argument("-n", dest="linecount", type=int, default=5,
-                        help="Number of lines to check from the beginning of the document.")
+                        help="Number of lines to check from the beginning of the document. [default %(default)s]")
 
     return parser.parse_args()
 

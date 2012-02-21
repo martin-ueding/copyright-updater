@@ -9,18 +9,18 @@ import copyrightupdate
 
 class CopyrightUpdaterTest(unittest.TestCase):
     def test_join_years(self):
-        assert copyright_updater.join_years([2002, 2003]) == '2002-2003'
-        assert copyright_updater.join_years([2002, 2003, 2004]) == '2002-2004'
-        assert copyright_updater.join_years([2002, 2004]) == '2002, 2004'
-        assert copyright_updater.join_years([2002, 2003, 2004, 2008, 2009, 2012]) == '2002-2004, 2008-2009, 2012'
-        assert copyright_updater.join_years([2002, 2003, 2004, 2006, 2008, 2009, 2012]) == '2002-2004, 2006, 2008-2009, 2012'
-        assert copyright_updater.join_years([2002, 2004, 2003, 2008, 2012, 2009]) == '2002-2004, 2008-2009, 2012'
+        assert copyrightupdate.join_years([2002, 2003]) == '2002-2003'
+        assert copyrightupdate.join_years([2002, 2003, 2004]) == '2002-2004'
+        assert copyrightupdate.join_years([2002, 2004]) == '2002, 2004'
+        assert copyrightupdate.join_years([2002, 2003, 2004, 2008, 2009, 2012]) == '2002-2004, 2008-2009, 2012'
+        assert copyrightupdate.join_years([2002, 2003, 2004, 2006, 2008, 2009, 2012]) == '2002-2004, 2006, 2008-2009, 2012'
+        assert copyrightupdate.join_years([2002, 2004, 2003, 2008, 2012, 2009]) == '2002-2004, 2008-2009, 2012'
 
     def test_parse_years(self):
-        assert copyright_updater.parse_years("2002") == [2002]
-        assert copyright_updater.parse_years("2002-2004") == [2002, 2003, 2004]
-        assert copyright_updater.parse_years("2002, 2004") == [2002, 2004]
-        assert copyright_updater.parse_years("2002-2004, 2010") == [2002, 2003, 2004, 2010]
+        assert copyrightupdate.parse_years("2002") == [2002]
+        assert copyrightupdate.parse_years("2002-2004") == [2002, 2003, 2004]
+        assert copyrightupdate.parse_years("2002, 2004") == [2002, 2004]
+        assert copyrightupdate.parse_years("2002-2004, 2010") == [2002, 2003, 2004, 2010]
 
     def test_find_copyright_years_string_1(self):
         lines = [
@@ -29,7 +29,7 @@ class CopyrightUpdaterTest(unittest.TestCase):
             "# Copyright (c) 2011 John Doe <john@example.com>",
         ]
 
-        years, line_number = copyright_updater.find_copyright_years_string(
+        years, line_number = copyrightupdate.find_copyright_years_string(
             lines, 5
         )
 
@@ -44,7 +44,7 @@ class CopyrightUpdaterTest(unittest.TestCase):
             "# Copyright (c) 2007-2009, 2011-2012 John Doe <john@example.com>",
         ]
 
-        years, line_number = copyright_updater.find_copyright_years_string(
+        years, line_number = copyrightupdate.find_copyright_years_string(
             lines, 5
         )
 
@@ -60,7 +60,7 @@ class CopyrightUpdaterTest(unittest.TestCase):
             "# Copyright (c) 2007-2009, 2011 John Doe <john@example.com>",
         ]
 
-        copyright_updater.process_lines(lines, 10)
+        copyrightupdate.process_lines(lines, 10)
 
         assert lines == [
             "#!/usr/bin/python",

@@ -9,6 +9,6 @@ setup(
     description = "Updates copyright years.",
     name = "copyrightupdate",
     py_modules = ["copyrightupdate"],
-    scripts = ["copyright_updater"],
+    scripts = ["copyright-updater"],
     version = "0.1",
 )

@@ -17,8 +17,8 @@ current year as well, like::
 
 This script checks for outdated copyright strings and updates them.
 
-Ranges are detected and collapsed intelligently. If you have C{2008, 2009,
-2010}, it will become C{2008-2010}. If you mix ranges and single years, this
+Ranges are detected and collapsed intelligently. If you have ``2008, 2009,
+2010}, it will become ``2008-2010``. If you mix ranges and single years, this
 will also be picked up correctly::
 
     2002, 2003, 2004, 2006, 2008, 2009, 2012
@@ -29,7 +29,7 @@ That list becomes::
 
 In order to prevent changing of copyright notices that do not carry your name,
 you can create an INI style configuration file at
-C{~/.config/copyright_updater.ini} which would look like that::
+``~/.config/copyright_updater.ini`` which would look like that::
 
     [name]
     name = John Doe
@@ -41,14 +41,16 @@ import datetime
 import os.path
 import re
 
+__docformat__ = "restructuredtext en"
+
 def process_file(f, linecount):
     """
     Processes a single file.
 
-    @param f: Filename to process
-    @type f: str
-    @param linecount: Up to which line should be processed.
-    @type linecount: int
+    :param f: Filename to process
+    :type f: str
+    :param linecount: Up to which line should be processed.
+    :type linecount: int
     """
 
     lines = []
@@ -66,12 +68,12 @@ def process_lines(lines, linecount, config_regex=""):
     """
     Process the given lines up to linecount.
 
-    @param lines: List of lines. This will be changed.
-    @type lines: list
-    @param linecount: Up to which line should be searched.
-    @type linecount: int
-    @param config_regex: Additional RegEx to match for.
-    @type config_regex: str
+    :param lines: List of lines. This will be changed.
+    :type lines: list
+    :param linecount: Up to which line should be searched.
+    :type linecount: int
+    :param config_regex: Additional RegEx to match for.
+    :type config_regex: str
     """
     copyright_years_string, linenumber = find_copyright_years_string(lines, linecount, config_regex)
 
@@ -103,12 +105,12 @@ def find_copyright_years_string(lines, linecount, config_regex=""):
     """
     Find the copyright year string in a file.
 
-    @param lines: Lines to process.
-    @type lines: list
-    @param linecount: Up to which line should be processed.
-    @type linecount: int
-    @return: Year string and line number.
-    @rtype: tuple
+    :param lines: Lines to process.
+    :type lines: list
+    :param linecount: Up to which line should be processed.
+    :type linecount: int
+    :return: Year string and line number.
+    :rtype: tuple
     """
     linenumber = 0
 
@@ -131,8 +133,8 @@ def load_config_regex():
     Loads the regex that matches the name and email stored in the settings
     file.
 
-    @return: RegEx.
-    @rtype: str
+    :return: RegEx.
+    :rtype: str
     """
     configfile = os.path.expanduser("~/.config/copyright_updater.ini")
     if os.path.isfile(configfile):
@@ -156,12 +158,12 @@ def build_regex(name, email):
     >>> build_regex("John Doe", "john@example.com")
     'John Doe.*john@example.com.*'
 
-    @param name: Name of the person.
-    @type name: str
-    @param email: Email of the person.
-    @type email: str
-    @return: RegEx.
-    @rtype: str
+    :param name: Name of the person.
+    :type name: str
+    :param email: Email of the person.
+    :type email: str
+    :return: RegEx.
+    :rtype: str
     """
     return name+".*"+email+".*"
 
@@ -173,11 +175,11 @@ def parse_years(year_string):
     >>> parse_years("2002-2004, 2010")
     [2002, 2003, 2004, 2010]
 
-    @raise YearParseException: Raised if a range consists of more then two elements.
-    @param year_string: String with years.
-    @type year_string: str
-    @return: List with every single year.
-    @rtype: list
+    :raise YearParseException: Raised if a range consists of more then two elements.
+    :param year_string: String with years.
+    :type year_string: str
+    :return: List with every single year.
+    :rtype: list
     """
     years = []
 
@@ -214,10 +216,10 @@ def join_years(years_list):
     >>> join_years([2002, 2003, 2004, 2006, 2008, 2009, 2012])
     '2002-2004, 2006, 2008-2009, 2012'
 
-    @param years_list: List with every single year.
-    @type years_list: list
-    @return: Joined string.
-    @rtype: str
+    :param years_list: List with every single year.
+    :type years_list: list
+    :return: Joined string.
+    :rtype: str
     """
     years = sorted(set(years_list))
 
@@ -241,10 +243,10 @@ def _flush_group(comma_groups, year_group):
     """
     Move the years in the year_group into the comma_groups.
 
-    @param comma_groups: List with already collapsed ranges. This will be changed.
-    @type comma_groups: list
-    @param year_group: List with range to be collapsed.
-    @type year_group: list
+    :param comma_groups: List with already collapsed ranges. This will be changed.
+    :type comma_groups: list
+    :param year_group: List with range to be collapsed.
+    :type year_group: list
     """
     if len(year_group) == 1:
         comma_groups.append(str(year_group[0]))

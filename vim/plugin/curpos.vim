@@ -1,5 +1,6 @@
-" This script is taken from:
-" http://vim.wikia.com/wiki/Maintain_cursor_and_screen_position
+" This script is taken from `vim.wikia.com
+" <http://vim.wikia.com/wiki/Maintain_cursor_and_screen_position>`_ and is not
+" part of copyright updater, is it a mere convinience copy.
 
 function CurPos(action)
   if a:action == "save"

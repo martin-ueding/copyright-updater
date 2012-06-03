@@ -3,6 +3,8 @@
 
 from distutils.core import setup
 
+__docformat__ = "restructuredtext en"
+
 setup(
     author = "Martin Ueding",
     author_email = "dev@martin-ueding.de",

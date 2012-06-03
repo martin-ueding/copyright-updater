@@ -7,6 +7,8 @@ import unittest
 
 import copyrightupdate
 
+__docformat__ = "restructuredtext en"
+
 class CopyrightUpdaterTest(unittest.TestCase):
     def test_join_years(self):
         assert copyrightupdate.join_years([2002, 2003]) == '2002-2003'

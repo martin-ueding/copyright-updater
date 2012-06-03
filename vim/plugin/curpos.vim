@@ -1,3 +1,4 @@
+" This script is taken from:
 " http://vim.wikia.com/wiki/Maintain_cursor_and_screen_position
 
 function CurPos(action)

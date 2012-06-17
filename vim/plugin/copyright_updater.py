@@ -27,9 +27,17 @@ Vim client to copyrightupdate.
 
 import vim
 
-import copyrightupdate
+has_imported = False
+
+try:
+    import copyrightupdate
+except ImportError:
+    pass
+else:
+    has_imported = True
 
 __docformat__ = "restructuredtext en"
 
 def update_copyright():
-    copyrightupdate.process_lines(vim.current.buffer, 5, copyrightupdate.load_config_regex())
+    if has_imported:
+        copyrightupdate.process_lines(vim.current.buffer, 5, copyrightupdate.load_config_regex())

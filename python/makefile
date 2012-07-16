@@ -27,3 +27,8 @@ test:
 
 doc:
 	epydoc -v $(pythonfiles)
+
+clean:
+	$(RM) *.pyc
+	$(RM) -r build
+	$(RM) copyright-updaterc

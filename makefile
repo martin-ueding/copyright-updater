@@ -27,3 +27,6 @@ install:
 	install -m 644 vim/plugin/copyright_updater.py -t "$(DESTDIR)/usr/share/vim/vimfiles/plugin/"
 	install -m 644 vim/plugin/copyright_updater.vim -t "$(DESTDIR)/usr/share/vim/vimfiles/plugin/"
 	install -m 644 vim/plugin/curpos.vim -t "$(DESTDIR)/usr/share/vim/vimfiles/plugin/"
+
+clean:
+	make -C python clean

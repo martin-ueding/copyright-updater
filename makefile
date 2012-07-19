@@ -22,7 +22,7 @@ all:
 	@echo "Nothing to do."
 
 install:
-	cd python && python setup.py install --prefix "$(DESTDIR)"
+	cd python && python setup.py install --root "$(DESTDIR)" --install-layout deb
 	install -d "$(DESTDIR)/usr/share/vim/vimfiles/plugin/"
 	install -m 644 vim/plugin/copyright_updater.py -t "$(DESTDIR)/usr/share/vim/vimfiles/plugin/"
 	install -m 644 vim/plugin/copyright_updater.vim -t "$(DESTDIR)/usr/share/vim/vimfiles/plugin/"

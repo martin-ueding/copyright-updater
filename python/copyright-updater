@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# Copyright (c) 2012 Martin Ueding <dev@martin-ueding.de>
+# Copyright © 2012-2013 Martin Ueding <dev@martin-ueding.de>
 
 ###############################################################################
 #                                   License                                   #
@@ -30,6 +30,7 @@ If no input files are given, the program acts as a filter from STDIN to STDOUT.
 """
 
 import argparse
+import os
 import sys
 
 import copyrightupdate
@@ -67,7 +68,7 @@ def _parse_args():
     :return: Namespace with arguments.
     :rtype: Namespace
     """
-    parser = argparse.ArgumentParser(usage="%(prog)s [options] file ...", description="Updates the copyright dates in source code.")
+    parser = argparse.ArgumentParser(description="Updates the copyright dates in source code.")
     parser.add_argument('files', metavar='file', type=str, nargs='*',
                         help='Files to check.')
     parser.add_argument("-n", dest="linecount", type=int, default=5,

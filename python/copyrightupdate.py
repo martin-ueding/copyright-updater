@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# Copyright © 2012 Martin Ueding <dev@martin-ueding.de>
+# Copyright © 2012-2013 Martin Ueding <dev@martin-ueding.de>
 
 ###############################################################################
 #                                   License                                   #
@@ -54,6 +54,11 @@ you can create an INI style configuration file at
     [name]
     name = John Doe
     email = john@example.com
+
+    [unicode]
+    replace = true
+
+Additionally, it can replace ``(c)`` with ``©`` automatically.
 """
 
 import ConfigParser
@@ -108,17 +113,14 @@ def process_lines(lines, linecount, config_regex=""):
     # Add the current year.
     d = datetime.date.today()
 
-    # If the current year is already in the list, do nothing.
-    if d.year in years:
-        return
+    # If the current year is not already in the list, append it and update the
+    # line accordingly.
+    if not d.year in years:
+        years.append(d.year)
+        joined_years = join_years(years)
+        lines[linenumber] = re.sub(r"\d[0-9-, ]+\d", joined_years, lines[linenumber], count=1)
 
-    years.append(d.year)
-
-    joined_years = join_years(years)
-
-    copyright_line = lines[linenumber]
-    new_copyright_line = re.sub(r"\d[0-9-, ]+\d", joined_years, copyright_line, count=1)
-    lines[linenumber] = new_copyright_line
+    lines[linenumber] = replace_copyright_symbol(lines[linenumber])
 
 
 def find_copyright_years_string(lines, linecount, config_regex=""):
@@ -169,6 +171,19 @@ def load_config_regex():
                 return build_regex(name, email)
 
     return ""
+
+
+def replace_copyright_symbol(line):
+    configfile = os.path.expanduser("~/.config/copyright_updater.ini")
+    if os.path.isfile(configfile):
+        parser = ConfigParser.ConfigParser()
+        parser.read(configfile)
+
+        if parser.has_option("unicode", "replace"):
+            if parser.get("unicode", "replace") == "true":
+                line = line.replace("(c)", "©")
+
+        return line
 
 
 def build_regex(name, email):

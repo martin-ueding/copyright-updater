@@ -5,6 +5,8 @@
 
 from distutils.core import setup
 
+import copyrightupdate
+
 __docformat__ = "restructuredtext en"
 
 setup(
@@ -20,6 +22,7 @@ setup(
 
     ],
     description = "Updates copyright years.",
+    long_description = copyrightupdate.__doc__,
     name = "copyrightupdate",
     py_modules = ["copyrightupdate"],
     scripts = ["copyright-updater"],

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# Copyright © 2012 Martin Ueding <dev@martin-ueding.de>
+# Copyright © 2012-2013 Martin Ueding <dev@martin-ueding.de>
 
 import unittest
 
@@ -28,7 +28,7 @@ class CopyrightUpdaterTest(unittest.TestCase):
         lines = [
             "#!/usr/bin/python",
             "# -*- coding: utf-8 -*-",
-            "# Copyright (c) 2011 John Doe <john@example.com>",
+            "# Copyright © 2011 John Doe <john@example.com>",
         ]
 
         years, line_number = copyrightupdate.find_copyright_years_string(
@@ -43,7 +43,7 @@ class CopyrightUpdaterTest(unittest.TestCase):
             "#!/usr/bin/python",
             "# -*- coding: utf-8 -*-",
             "",
-            "# Copyright (c) 2007-2009, 2011-2012 John Doe <john@example.com>",
+            "# Copyright © 2007-2009, 2011-2012 John Doe <john@example.com>",
         ]
 
         years, line_number = copyrightupdate.find_copyright_years_string(
@@ -59,7 +59,7 @@ class CopyrightUpdaterTest(unittest.TestCase):
             "#!/usr/bin/python",
             "# -*- coding: utf-8 -*-",
             "",
-            "# Copyright (c) 2007-2009, 2011 John Doe <john@example.com>",
+            "# Copyright © 2007-2009, 2011 John Doe <john@example.com>",
         ]
 
         copyrightupdate.process_lines(lines, 10)
@@ -68,5 +68,5 @@ class CopyrightUpdaterTest(unittest.TestCase):
             "#!/usr/bin/python",
             "# -*- coding: utf-8 -*-",
             "",
-            "# Copyright (c) 2007-2009, 2011-2012 John Doe <john@example.com>",
+            "# Copyright © 2007-2009, 2011-2012 John Doe <john@example.com>",
         ]

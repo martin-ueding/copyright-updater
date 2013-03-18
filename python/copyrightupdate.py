@@ -58,7 +58,8 @@ you can create an INI style configuration file at
     [unicode]
     replace = true
 
-Additionally, it can replace ``(c)`` with ``©`` automatically.
+Additionally, it can replace ``(c)`` with ``©`` automatically, if you set the
+option in the config file.
 """
 
 import ConfigParser

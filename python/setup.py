@@ -22,6 +22,8 @@ setup(
 
     ],
     description = "Updates copyright years.",
+    download_url = "http://martin-ueding.de/download/copyright-updater/",
+    license = "GPLv2+",
     long_description = copyrightupdate.__doc__,
     name = "copyrightupdate",
     py_modules = ["copyrightupdate"],

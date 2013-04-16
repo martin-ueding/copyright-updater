@@ -1,7 +1,6 @@
 # Copyright © 2012-2013 Martin Ueding <dev@martin-ueding.de>
 
 all:
-	@echo "Nothing to do."
 
 install:
 	cd python && python setup.py install --root "$(DESTDIR)" --install-layout deb

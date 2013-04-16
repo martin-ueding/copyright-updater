@@ -12,6 +12,9 @@ test:
 doc:
 	epydoc -v $(pythonfiles)
 
+install:
+	./setup.py install --root "$(DESTDIR)" --install-layout deb
+
 clean:
 	$(RM) *.pyc
 	$(RM) -r build

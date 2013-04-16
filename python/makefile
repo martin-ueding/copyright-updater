@@ -4,7 +4,6 @@ pythonfiles := $(wildcard copyright*.py) copyright-updater
 testfiles := $(wildcard *_test.py)
 
 all:
-	@echo 'Nothing to do.'
 
 test:
 	python -m doctest $(pythonfiles)

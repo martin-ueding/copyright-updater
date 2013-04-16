@@ -13,7 +13,7 @@ doc:
 	epydoc -v $(pythonfiles)
 
 install:
-	./setup.py install --root "$(DESTDIR)" --install-layout deb
+	./setup.py install --prefix "$(DESTDIR)/usr" --install-layout deb
 
 clean:
 	$(RM) *.pyc

@@ -44,7 +44,12 @@ Additionally, it can replace ``(c)`` with ``©`` automatically, if you set the
 option in the config file.
 """
 
-import ConfigParser
+import platform
+if platform.python_version_tuple()[0] == '3':
+    import configparser
+else:
+    import ConfigParser
+
 import datetime
 import os.path
 import re
@@ -207,7 +212,7 @@ def parse_years(year_string):
 
     for comma_group in comma_groups:
         year_group = re.split(r"\s*-\s*", comma_group)
-        year_group = map(int, year_group)
+        year_group = [int(x) for x in year_group]
 
         if len(year_group) == 1:
             years += year_group

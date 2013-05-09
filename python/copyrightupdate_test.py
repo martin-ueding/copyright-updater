@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # Copyright © 2012-2013 Martin Ueding <dev@martin-ueding.de>
+# Copyright © 2013 K Richard Pixley <rich@noir.com>
 
 import unittest
 
@@ -70,3 +71,6 @@ class CopyrightUpdaterTest(unittest.TestCase):
             "",
             "# Copyright © 2007-2009, 2011, 2013 John Doe <john@example.com>",
         ])
+
+if __name__ == '__main__':
+    unittest.main()

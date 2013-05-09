@@ -51,7 +51,7 @@ import re
 
 __docformat__ = "restructuredtext en"
 
-default_linelimit = 5
+default_linelimit = 0
 
 def process_file(f, linecount=default_linelimit):
     """
@@ -129,7 +129,7 @@ def find_copyright_years_string(lines, linecount=default_linelimit, config_regex
             return match.group(1).strip(), linenumber
 
         linenumber += 1
-        if linenumber > linecount:
+        if 0 < linecount and linecount < linenumber:
             break
 
     return None, -1

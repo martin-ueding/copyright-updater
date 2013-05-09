@@ -32,9 +32,7 @@ class CopyrightUpdaterTest(unittest.TestCase):
             "# Copyright © 2011 John Doe <john@example.com>",
         ]
 
-        years, line_number = copyrightupdate.find_copyright_years_string(
-            lines, 5
-        )
+        years, line_number = copyrightupdate.find_copyright_years_string(lines)
 
         self.assertEquals(years, "2011")
         self.assertEquals(line_number, 2)
@@ -47,9 +45,7 @@ class CopyrightUpdaterTest(unittest.TestCase):
             "# Copyright © 2007-2009, 2011-2012 John Doe <john@example.com>",
         ]
 
-        years, line_number = copyrightupdate.find_copyright_years_string(
-            lines, 5
-        )
+        years, line_number = copyrightupdate.find_copyright_years_string(lines)
 
         self.assertEquals(years, "2007-2009, 2011-2012")
         self.assertEquals(line_number, 3)
@@ -63,7 +59,7 @@ class CopyrightUpdaterTest(unittest.TestCase):
             "# Copyright © 2007-2009, 2011 John Doe <john@example.com>",
         ]
 
-        copyrightupdate.process_lines(lines, 10)
+        copyrightupdate.process_lines(lines)
 
         self.assertEquals(lines, [
             "#!/usr/bin/python",

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # Copyright © 2012-2013 Martin Ueding <dev@martin-ueding.de>
+# Copyright © 2013 K Richard Pixley <rich@noir.com>
 
 """
 CLI client for the copyrightupdate module.
@@ -53,7 +54,7 @@ def _parse_args():
     parser = argparse.ArgumentParser(description="Updates the copyright dates in source code.")
     parser.add_argument('files', metavar='file', type=str, nargs='*',
                         help='Files to check.')
-    parser.add_argument("-n", dest="linecount", type=int, default=5,
+    parser.add_argument("-n", dest="linecount", type=int, default=copyrightupdate.default_linelimit(),
                         help="Number of lines to check from the beginning of the document. [default %(default)s]")
 
     return parser.parse_args()

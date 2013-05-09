@@ -51,7 +51,9 @@ import re
 
 __docformat__ = "restructuredtext en"
 
-def process_file(f, linecount):
+default_linelimit = 5
+
+def process_file(f, linecount=default_linelimit):
     """
     Processes a single file.
 
@@ -72,7 +74,7 @@ def process_file(f, linecount):
             new.write(line)
 
 
-def process_lines(lines, linecount, config_regex=""):
+def process_lines(lines, linecount=default_linelimit, config_regex=""):
     """
     Process the given lines up to linecount.
 
@@ -106,7 +108,7 @@ def process_lines(lines, linecount, config_regex=""):
     lines[linenumber] = replace_copyright_symbol(lines[linenumber])
 
 
-def find_copyright_years_string(lines, linecount, config_regex=""):
+def find_copyright_years_string(lines, linecount=default_linelimit, config_regex=""):
     """
     Find the copyright year string in a file.
 

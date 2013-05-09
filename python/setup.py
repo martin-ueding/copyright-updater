@@ -29,5 +29,5 @@ setup(
     py_modules = ["copyrightupdate"],
     scripts = ["copyright-updater"],
     url = "http://martin-ueding.de/projects/copyright-updater/",
-    version = "1.1.1",
+    version = "1.1.3",
 )

@@ -49,7 +49,7 @@ import platform
 if platform.python_version_tuple()[0] == '3':
     import configparser
 else:
-    import ConfigParser
+    import ConfigParser as configparser
 
 import datetime
 import os.path
@@ -151,7 +151,7 @@ def load_config_regex():
     """
     configfile = os.path.expanduser("~/.config/copyright_updater.ini")
     if os.path.isfile(configfile):
-        parser = ConfigParser.ConfigParser()
+        parser = configparser.ConfigParser()
         parser.read(configfile)
 
         if parser.has_option("name", "name"):
@@ -167,7 +167,7 @@ def load_config_regex():
 def replace_copyright_symbol(line):
     configfile = os.path.expanduser("~/.config/copyright_updater.ini")
     if os.path.isfile(configfile):
-        parser = ConfigParser.ConfigParser()
+        parser = configparser.ConfigParser()
         parser.read(configfile)
 
         if parser.has_option("unicode", "replace"):

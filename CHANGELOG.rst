@@ -4,6 +4,12 @@
 CHANGELOG
 #########
 
+v1.2
+    - Work with both Python 2 and 3 versions
+    - Run without a configuration file
+    - Unittest driver
+    - Linelimit disabled by default, allow zero value to disable
+
 v1.1.4
     - Sync up this version number and ``python/setup.py``.
 

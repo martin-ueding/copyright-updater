@@ -15,6 +15,7 @@ If no input files are given, the program acts as a filter from STDIN to STDOUT.
 import argparse
 import os
 import sys
+import datetime
 
 import copyrightupdate
 
@@ -26,19 +27,21 @@ def main():
     """
     options = _parse_args()
 
+    pb = pb_from_options(options)
+
     if len(options.files) > 0:
         for f in options.files:
             # Ignore nonexistant files.
             if not os.path.isfile(f):
                 continue
 
-            copyrightupdate.process_file(f, options.linecount)
+            copyrightupdate.process_file(f, pb)
 
     else:
         lines = sys.stdin.readlines()
 
         if len(lines) > 0:
-            copyrightupdate.process_lines(lines, len(lines))
+            copyrightupdate.process_lines(lines, pb)
 
             for line in lines:
                 sys.stdout.write(line)
@@ -52,13 +55,58 @@ def _parse_args():
     :rtype: Namespace
     """
     parser = argparse.ArgumentParser(description="Updates the copyright dates in source code.")
+
     parser.add_argument('files', metavar='file', type=str, nargs='*',
                         help='Files to check.')
-    parser.add_argument("-n", dest="linecount", type=int, default=copyrightupdate.default_linelimit,
+
+    configfiledefault = os.path.expanduser("~/.config/copyright_updater.ini")
+    parser.add_argument("-c", dest="configfile", type=str, default=configfiledefault,
+                        help="Read the named file as configfile. [default %(default)s]")
+
+    parser.add_argument("-l", dest="linecount", type=int, default=0,
                         help="Number of lines to check from the beginning of the document. [default %(default)s]")
+
+    parser.add_argument("-i", dest="suppress_config", default=False, action='store_true',
+                        help="Do not read configfile. [default %(default)s]")
+
+    parser.add_argument("-n", dest="name", type=str, default=None,
+                        help="Name to use as copyright owner.  Only these copyright lines will be updated. [default %(default)s]")
+
+    parser.add_argument("-s", dest="symbol_style", type=str, default=None,
+                        help="String to use as copyright symbol.  If set, all lines changed will have their copyright symbols forced to this string. [default %(default)s]")
+
+    parser.add_argument("-y", dest="year", type=int, default=datetime.date.today().year,
+                        help="String to use as copyright symbol.  If set, all lines changed will have their copyright symbols forced to this string. [default %(default)s]")
+
+    parser.add_argument("-w", dest="warn", default=False, action='store_true',
+                        help="If set, files for which no relevant copyright line is found will produce a warning. [default %(default)s]")
 
     return parser.parse_args()
 
+
+def pb_from_options(options):
+    pb = copyrightupdate.ParamBlock()
+
+    if not options.suppress_config:
+        pb.read(options.configfile)
+
+    if options.linecount:
+        pb.linelimit=options.linecount
+
+    if options.name:
+        pb.name=options.name
+
+    if options.symbol_style:
+        pb.symbol_style=options.symbol_style
+
+    if options.year:
+        pb.year=options.year
+
+    if options.warn:
+        pb.warn=options.warn
+
+    pb.recompile()
+    return pb
 
 if __name__ == "__main__":
     main()

@@ -25,10 +25,13 @@ Then copy the contents of the ``vim`` folder (that is ``plugin``) into your
 ``~/.vim/bundle/copyright_updater/plugin/``.
 
 Then setup the config file in ``~/.config/copyright_updater.ini`` which would
-look like that:
+look like this:
 
 .. code:: ini
 
-    [name]
-    name = John Doe
-    email = john@example.com
+    [copyrightupdate]
+    linelimit = 6
+    name = Joe Blow <joe@private.com>
+    symbol_style = "(C)"
+    year = 1999
+    warn = yes

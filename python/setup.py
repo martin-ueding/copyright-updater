@@ -20,11 +20,11 @@ setup(
         "License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)",
         "Programming Language :: Python",
         "Topic :: Text Editors",
-        # pointedly NOT 2.4 or 2.5.
-        "Programming Language :: Python :: 2.6",
+        # pointedly NOT 2.4 or 2.5. - uses "with"
+        # no longer 2.6 as we now require argparse
         "Programming Language :: Python :: 2.7",
         # also NOT 3.0
-        "Programming Language :: Python :: 3.1",
+        # no longer 3.1 as we now require argparse
         "Programming Language :: Python :: 3.2",
         "Programming Language :: Python :: 3.3",
     ],

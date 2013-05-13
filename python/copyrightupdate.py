@@ -79,7 +79,7 @@ handler = logging.StreamHandler()
 handler.setLevel(logging.DEBUG)
 logger.addHandler(handler)
 
-def suckfile(name):
+def load_file(name):
     if platform.python_version_tuple()[0] == '3':
         with open(name, 'r', encoding='utf-8') as f:
             lines = f.readlines()
@@ -89,7 +89,7 @@ def suckfile(name):
 
     return lines
 
-def spitfile(name, lines):
+def write_file(name, lines):
     # go through -new so that if we're interrupted or crash while writing,
     # the file isn't lost.  The rename here is atomic so either the full
     # old file will exist at this name or the full new file will.
@@ -222,7 +222,7 @@ def process_file(f, pb):
     :type linecount: int
     """
 
-    lines = suckfile(f)
+    lines = load_file(f)
 
     line_found, change_made = process_lines(lines, pb=pb)
 
@@ -230,7 +230,7 @@ def process_file(f, pb):
         logger.warn('No suitable copyright line found for \'{0}\''.format(f))
 
     if change_made:
-        spitfile(f, lines)
+        write_file(f, lines)
 
 symbol_pattern = re.compile('(\([cC]\)|©)')
 

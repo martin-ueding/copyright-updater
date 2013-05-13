@@ -67,9 +67,9 @@ class CopyrightUpdaterTest(unittest.TestCase):
         self.assertEquals(copyrightupdate.parse_years("2002-2004, 2010"), [2002, 2003, 2004, 2010])
 
     def filetest(self, lines, gold, pb):
-        copyrightupdate.spitfile(testfile, lines)
+        copyrightupdate.write_file(testfile, lines)
         subprocess.check_call(command_line_from_pb(pb))
-        post = copyrightupdate.suckfile(testfile)
+        post = copyrightupdate.load_file(testfile)
         self.assertEquals(post, gold)
 
     # first series with default pb.

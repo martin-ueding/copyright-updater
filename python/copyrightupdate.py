@@ -4,7 +4,8 @@
 # Copyright © 2012-2013 Martin Ueding <dev@martin-ueding.de>
 # Copyright © 2013 K Richard Pixley <rich@noir.com>
 
-"""Parses the given lines and updates the copyright string.
+"""
+Parses the given lines and updates the copyright string.
 
 Say you have a copyright string in the top of some source file, like::
 

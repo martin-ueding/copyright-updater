@@ -246,7 +246,6 @@ def process_lines(lines, pb):
     :param pb: params
     :type pb: ParamBlock
     :rtype: Boolean
-
     """
     change_made = False
 

@@ -31,7 +31,7 @@ look like this:
 
     [copyrightupdate]
     linelimit = 6
-    name = Joe Blow <joe@private.com>
+    name = John Doe <john@example.com>
     symbol_style = "(C)"
     year = 1999
     warn = yes

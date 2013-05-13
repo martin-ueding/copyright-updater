@@ -93,6 +93,10 @@ def spitfile(name, lines):
     # go through -new so that if we're interrupted or crash while writing,
     # the file isn't lost.  The rename here is atomic so either the full
     # old file will exist at this name or the full new file will.
+
+    # XXX The problem with this is that if a file `foo` and `foo-new` exist,
+    # working on `foo` will overwrite `foo-new`. So a temporary file should be
+    # used.
     new = name + '-new'
 
     if platform.python_version_tuple()[0] == '3':

@@ -4,12 +4,14 @@
 CHANGELOG
 #########
 
+v1.2.1
+    - Do not change Vim's jumplist
+
 v1.2
     - Work with both Python 2 and 3 versions
     - Run without a configuration file
     - Unittest driver
     - Linelimit disabled by default, allow zero value to disable
-    - Do not change Vim's jumplist
 
 v1.1.4
     - Sync up this version number and ``python/setup.py``.

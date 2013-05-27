@@ -11,8 +11,8 @@ execute 'pyfile '.s:basename
 " This is called before writing
 function! Copyright_updater()
 	if &modified
-		call CurPos("save")
-		python update_copyright()
-		call CurPos("restore")
+		keepjumps call CurPos("save")
+		keepjumps python update_copyright()
+		keepjumps call CurPos("restore")
 	endif
 endfunction

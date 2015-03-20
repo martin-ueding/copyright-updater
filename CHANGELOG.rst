@@ -1,8 +1,11 @@
-.. Copyright © 2013 Martin Ueding <dev@martin-ueding.de>
+.. Copyright © 2013, 2015 Martin Ueding <dev@martin-ueding.de>
 
 #########
 CHANGELOG
 #########
+
+v1.2.2
+    - Allow passing of more build options
 
 v1.2.1
     - Do not change Vim's jumplist

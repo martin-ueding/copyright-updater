@@ -1,11 +1,24 @@
+.. Copyright © 2012, 2015 Martin Ueding <dev@martin-ueding.de>
+
 #################
-copyright updater
+copyright-updater
 #################
 
 Updates the copyright years in source code files.
 
 Installation
 ============
+
+Makefile
+--------
+
+On Debian based systems, you can just call ``make install``. If you want other
+options passed to ``./setup.py install``, then call ``make`` with a different
+``setupoptions=…`` argument, where you can specify all the options that you
+want to setuptools.
+
+Manual
+------
 
 Go into the ``python`` folder and install the Python modules. You can either
 do it for all users:
@@ -23,6 +36,9 @@ Or just for yourself:
 Then copy the contents of the ``vim`` folder (that is ``plugin``) into your
 ``~/.vim`` folder. If you use Pathogen, you should copy the files into
 ``~/.vim/bundle/copyright_updater/plugin/``.
+
+Configuration
+=============
 
 Then setup the config file in ``~/.config/copyright_updater.ini`` which would
 look like that:

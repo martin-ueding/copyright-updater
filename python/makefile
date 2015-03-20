@@ -1,4 +1,6 @@
-# Copyright © 2012-2013 Martin Ueding <dev@martin-ueding.de>
+# Copyright © 2012-2013, 2015 Martin Ueding <dev@martin-ueding.de>
+
+setupoptions = --prefix "$(DESTDIR)/usr" --install-layout deb
 
 pythonfiles := $(wildcard copyright*.py) copyright-updater
 testfiles := $(wildcard *_test.py)
@@ -13,7 +15,7 @@ doc:
 	epydoc -v $(pythonfiles)
 
 install:
-	./setup.py install --prefix "$(DESTDIR)/usr" --install-layout deb
+	./setup.py install $(setupoptions)
 
 clean:
 	$(RM) *.pyc

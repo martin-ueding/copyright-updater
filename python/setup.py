@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# Copyright © 2012-2013 Martin Ueding <dev@martin-ueding.de>
+# Copyright © 2012-2013, 2015 Martin Ueding <dev@martin-ueding.de>
 # Copyright © 2013 K Richard Pixley <rich@noir.com>
 
 from distutils.core import setup
@@ -36,5 +36,5 @@ setup(
     py_modules = ["copyrightupdate"],
     scripts = ["copyright-updater"],
     url = "http://martin-ueding.de/projects/copyright-updater/",
-    version = "1.2",
+    version = "1.2.2",
 )

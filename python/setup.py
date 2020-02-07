@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# Copyright © 2012-2013, 2015 Martin Ueding <dev@martin-ueding.de>
+# Copyright © 2012-2013, 2015 Martin Ueding <martin-ueding.de>
 # Copyright © 2013 K Richard Pixley <rich@noir.com>
 
 from distutils.core import setup
@@ -12,7 +12,6 @@ __docformat__ = "restructuredtext en"
 
 setup(
     author = "Martin Ueding",
-    author_email = "dev@martin-ueding.de",
     classifiers = [
         "Environment :: Console",
         "Environment :: Plugins",

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# Copyright © 2012-2013 Martin Ueding <dev@martin-ueding.de>
+# Copyright © 2012-2013 Martin Ueding <martin-ueding.de>
 # Copyright © 2013 K Richard Pixley <rich@noir.com>
 
 import unittest

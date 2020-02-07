@@ -1,4 +1,4 @@
-# Copyright © 2012-2013, 2015 Martin Ueding <dev@martin-ueding.de>
+# Copyright © 2012-2013, 2015 Martin Ueding <martin-ueding.de>
 
 setupoptions = --prefix "$(DESTDIR)/usr" --install-layout deb
 

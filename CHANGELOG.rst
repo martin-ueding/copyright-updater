@@ -1,4 +1,4 @@
-.. Copyright © 2013, 2015 Martin Ueding <dev@martin-ueding.de>
+.. Copyright © 2013, 2015 Martin Ueding <martin-ueding.de>
 
 #########
 CHANGELOG
